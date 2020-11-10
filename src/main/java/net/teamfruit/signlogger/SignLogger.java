@@ -34,5 +34,9 @@ public final class SignLogger extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        try {
+            log.close();
+        } catch (IOException ignored) {
+        }
     }
 }
