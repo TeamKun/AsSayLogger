@@ -1,0 +1,6 @@
+name: SignLogger
+version: ${project.version}
+main: net.teamfruit.signlogger.SignLogger
+api-version: 1.15
+authors: [Kamesuta]
+description: 看板会話をログ
