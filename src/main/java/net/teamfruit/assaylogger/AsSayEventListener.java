@@ -1,21 +1,21 @@
-package net.teamfruit.signlogger;
+package net.teamfruit.assaylogger;
 
+import net.teamfruit.assay.AsSayEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.SignChangeEvent;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
-public class SignEventListener implements Listener {
+public class AsSayEventListener implements Listener {
     private ZoneId timezone = ZoneId.of("Asia/Tokyo");
 
     @EventHandler
-    public void onSignEvent(SignChangeEvent event) {
+    public void onSignEvent(AsSayEvent event) {
         LocalDateTime now = LocalDateTime.now(timezone);
         try {
-            SignLogger.log.log(now, event.getPlayer(), event.getBlock(), String.join("\n", event.getLines()));
+            AsSayLogger.log.log(now, event.getSender(), event.getAs(), event.getText());
         } catch (IOException ignored) {
         }
     }

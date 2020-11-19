@@ -1,11 +1,10 @@
-package net.teamfruit.signlogger;
+package net.teamfruit.assaylogger;
 
 import com.google.common.base.Charsets;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.QuoteMode;
-import org.bukkit.Location;
-import org.bukkit.block.Block;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.io.File;
@@ -27,7 +26,7 @@ public class Log implements AutoCloseable {
 
         CSVFormat format = CSVFormat.EXCEL;
         if (!path.exists())
-            format = format.withHeader("時間", "座標", "UUID", "名前", "メッセージ");
+            format = format.withHeader("時間", "UUID", "名前", "役", "メッセージ");
         format = format.withQuoteMode(QuoteMode.MINIMAL);
         writer = format.print(new OutputStreamWriter(new FileOutputStream(path, true), Charsets.UTF_8));
     }
@@ -37,10 +36,14 @@ public class Log implements AutoCloseable {
         writer.close();
     }
 
-    public void log(LocalDateTime time, Player player, Block block, String text) throws IOException {
-        String locText = String.format("%d %d %d", block.getX(), block.getY(), block.getZ());
-
-        writer.printRecord(formatter.format(time), locText, player.getUniqueId().toString(), player.getName(), text);
+    public void log(LocalDateTime time, CommandSender player, String as, String text) throws IOException {
+        writer.printRecord(
+                formatter.format(time),
+                (player instanceof Player) ? ((Player) player).getUniqueId().toString() : "",
+                player.getName(),
+                as,
+                text
+        );
         writer.flush();
     }
 }

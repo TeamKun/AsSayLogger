@@ -1,4 +1,4 @@
-package net.teamfruit.signlogger;
+package net.teamfruit.assaylogger;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-public final class SignLogger extends JavaPlugin {
+public final class AsSayLogger extends JavaPlugin {
     public static Logger logger;
     public static Log log;
 
@@ -28,7 +28,7 @@ public final class SignLogger extends JavaPlugin {
         }
 
         // Event
-        getServer().getPluginManager().registerEvents(new SignEventListener(), this);
+        getServer().getPluginManager().registerEvents(new AsSayEventListener(), this);
     }
 
     @Override

@@ -1,6 +1,8 @@
-name: SignLogger
+name: AsSayLogger
 version: ${project.version}
-main: net.teamfruit.signlogger.SignLogger
+main: net.teamfruit.assaylogger.AsSayLogger
 api-version: 1.15
 authors: [Kamesuta]
-description: 看板会話をログ
+description: AsSayをログ
+depend:
+  - AsSay
